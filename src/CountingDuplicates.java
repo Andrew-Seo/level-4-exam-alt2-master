@@ -1,24 +1,20 @@
-import java.util.Scanner;
 
 public class CountingDuplicates {
+
 	public static int duplicateCount(String word) {
 		int counter = 0;
-		char[] s = new char[word.length()];
-		s= word.toCharArray();
-		int count = word.length() - word.replace(".", "").length();
-		
-		return count;
-	}
-	
-	public static void main(String[] args) {
-		try (Scanner scanner = new Scanner(System.in)) {
-			while (true) {
-				final String nextLine = scanner.nextLine();
-				if (nextLine.trim().isEmpty()) break;
-					
-				System.out.println(duplicateCount(nextLine));
+		int dupe = 0;
+		for (int i = 0; i < word.length(); i++) {
+			for (int j = 0; j < word.length(); j++) {
+				if(word.charAt(i) == word.charAt(j) && i!=j) {
+					counter++;
+				}
+			}
+			if(counter > 0) {
+				dupe++;
+				counter=0;
 			}
 		}
-	}	
-
+		return dupe;
+		}
 }
